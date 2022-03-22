@@ -13,47 +13,48 @@ class MyApp extends StatelessWidget {
       title: _title,
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
-        body: const MyStatefulWidget(),
+        body: const Center(
+          child: MyStatelessWidget(),
+        ),
       ),
     );
   }
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+class MyStatelessWidget extends StatelessWidget {
+  const MyStatelessWidget({Key? key}) : super(key: key);
 
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle style =
-    ElevatedButton.styleFrom(textStyle: const TextStyle(fontSize: 20));
-
     return Center(
       child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ElevatedButton(
-            style: style,
-            onPressed: () {},
-            child: const Text('Change Disabled'),
-          ),
-          const SizedBox(height: 30),
-          ElevatedButton(
-            style: style,
-            onPressed: () {},
-            child: const Text('Enabled'),
-          ),
-          ElevatedButton(
-            style: style,
-            onPressed: null,
-            child: const Text('測試'),
-          ),
-        ],
-      ),
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 20),
+              ),
+              onPressed: () {
+                debugPrint('TextButton Click!');
+              },
+              child: const Text('TextButton'),
+            ),
+
+            OutlinedButton(
+              onPressed: () {
+                debugPrint('OutlinedButton click');
+              },
+              child: const Text('OutlinedButton'),
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+                debugPrint('ElevatedButton click');
+              },
+              child: Text('ElevatedButton'),
+            )
+          ]
+      )
     );
   }
 }
